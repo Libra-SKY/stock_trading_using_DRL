@@ -3,7 +3,6 @@ from collections import deque
 
 import numpy as np
 from tensorflow.keras import Sequential
-from tensorflow.keras.callbacks import TensorBoard
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.models import load_model
 from tensorflow.keras.optimizers import Adam
@@ -29,8 +28,6 @@ class Agent(Portfolio):
         self.is_eval = is_eval
         self.model = load_model('saved_models/{}.h5'.format(model_name)) if is_eval else self.model()
 
-        self.tensorboard = TensorBoard(log_dir='./logs/DQN_tensorboard', update_freq=90)
-        self.tensorboard.set_model(self.model)
 
     def model(self):
         model = Sequential()
